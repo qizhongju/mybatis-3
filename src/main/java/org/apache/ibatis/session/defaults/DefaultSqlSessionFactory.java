@@ -44,6 +44,7 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
 
   @Override
   public SqlSession openSession() {
+    //level:隔离级别
     return openSessionFromDataSource(configuration.getDefaultExecutorType(), null, false);
   }
 

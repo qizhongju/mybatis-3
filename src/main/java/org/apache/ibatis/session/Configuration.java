@@ -161,8 +161,13 @@ public class Configuration {
   protected final Set<String> loadedResources = new HashSet<>();
   protected final Map<String, XNode> sqlFragments = new StrictMap<>("XML fragments parsed from previous mappers");
 
+  //
   protected final Collection<XMLStatementBuilder> incompleteStatements = new LinkedList<>();
+
+  //
   protected final Collection<CacheRefResolver> incompleteCacheRefs = new LinkedList<>();
+
+  //
   protected final Collection<ResultMapResolver> incompleteResultMaps = new LinkedList<>();
   protected final Collection<MethodResolver> incompleteMethods = new LinkedList<>();
 
@@ -179,6 +184,7 @@ public class Configuration {
   }
 
   public Configuration() {
+    //设置默认的别名注册器(typeAliasRegistry)和语言注册器(languageRegistry)
     typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
     typeAliasRegistry.registerAlias("MANAGED", ManagedTransactionFactory.class);
 
@@ -208,6 +214,7 @@ public class Configuration {
     typeAliasRegistry.registerAlias("CGLIB", CglibProxyFactory.class);
     typeAliasRegistry.registerAlias("JAVASSIST", JavassistProxyFactory.class);
 
+    //设置默认语言注册器(languageRegistry)
     languageRegistry.setDefaultDriverClass(XMLLanguageDriver.class);
     languageRegistry.register(RawLanguageDriver.class);
   }

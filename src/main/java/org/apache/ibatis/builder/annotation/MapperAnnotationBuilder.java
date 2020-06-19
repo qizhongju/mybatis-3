@@ -1,17 +1,17 @@
 /**
- *    Copyright 2009-2019 the original author or authors.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * Copyright 2009-2019 the original author or authors.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.apache.ibatis.builder.annotation;
 
@@ -178,7 +178,9 @@ public class MapperAnnotationBuilder {
         }
       }
       if (inputStream != null) {
+        //创建mapper文件builder
         XMLMapperBuilder xmlParser = new XMLMapperBuilder(inputStream, assistant.getConfiguration(), xmlResource, configuration.getSqlFragments(), type.getName());
+        //执行解析mapper文件
         xmlParser.parse();
       }
     }
@@ -201,7 +203,7 @@ public class MapperAnnotationBuilder {
     Properties props = new Properties();
     for (Property property : properties) {
       props.setProperty(property.name(),
-          PropertyParser.parse(property.value(), configuration.getVariables()));
+        PropertyParser.parse(property.value(), configuration.getVariables()));
     }
     return props;
   }
@@ -283,7 +285,7 @@ public class MapperAnnotationBuilder {
       JdbcType jdbcType = discriminator.jdbcType() == JdbcType.UNDEFINED ? null : discriminator.jdbcType();
       @SuppressWarnings("unchecked")
       Class<? extends TypeHandler<?>> typeHandler = (Class<? extends TypeHandler<?>>)
-              (discriminator.typeHandler() == UnknownTypeHandler.class ? null : discriminator.typeHandler());
+        (discriminator.typeHandler() == UnknownTypeHandler.class ? null : discriminator.typeHandler());
       Case[] cases = discriminator.cases();
       Map<String, String> discriminatorMap = new HashMap<>();
       for (Case c : cases) {
@@ -356,30 +358,30 @@ public class MapperAnnotationBuilder {
       }
 
       assistant.addMappedStatement(
-          mappedStatementId,
-          sqlSource,
-          statementType,
-          sqlCommandType,
-          fetchSize,
-          timeout,
-          // ParameterMapID
-          null,
-          parameterTypeClass,
-          resultMapId,
-          getReturnType(method),
-          resultSetType,
-          flushCache,
-          useCache,
-          // TODO gcode issue #577
-          false,
-          keyGenerator,
-          keyProperty,
-          keyColumn,
-          // DatabaseID
-          null,
-          languageDriver,
-          // ResultSets
-          options != null ? nullOrEmpty(options.resultSets()) : null);
+        mappedStatementId,
+        sqlSource,
+        statementType,
+        sqlCommandType,
+        fetchSize,
+        timeout,
+        // ParameterMapID
+        null,
+        parameterTypeClass,
+        resultMapId,
+        getReturnType(method),
+        resultSetType,
+        flushCache,
+        useCache,
+        // TODO gcode issue #577
+        false,
+        keyGenerator,
+        keyProperty,
+        keyColumn,
+        // DatabaseID
+        null,
+        languageDriver,
+        // ResultSets
+        options != null ? nullOrEmpty(options.resultSets()) : null);
     }
   }
 
@@ -545,22 +547,22 @@ public class MapperAnnotationBuilder {
       }
       @SuppressWarnings("unchecked")
       Class<? extends TypeHandler<?>> typeHandler = (Class<? extends TypeHandler<?>>)
-              ((result.typeHandler() == UnknownTypeHandler.class) ? null : result.typeHandler());
+        ((result.typeHandler() == UnknownTypeHandler.class) ? null : result.typeHandler());
       ResultMapping resultMapping = assistant.buildResultMapping(
-          resultType,
-          nullOrEmpty(result.property()),
-          nullOrEmpty(result.column()),
-          result.javaType() == void.class ? null : result.javaType(),
-          result.jdbcType() == JdbcType.UNDEFINED ? null : result.jdbcType(),
-          hasNestedSelect(result) ? nestedSelectId(result) : null,
-          null,
-          null,
-          null,
-          typeHandler,
-          flags,
-          null,
-          null,
-          isLazy(result));
+        resultType,
+        nullOrEmpty(result.property()),
+        nullOrEmpty(result.column()),
+        result.javaType() == void.class ? null : result.javaType(),
+        result.jdbcType() == JdbcType.UNDEFINED ? null : result.jdbcType(),
+        hasNestedSelect(result) ? nestedSelectId(result) : null,
+        null,
+        null,
+        null,
+        typeHandler,
+        flags,
+        null,
+        null,
+        isLazy(result));
       resultMappings.add(resultMapping);
     }
   }
@@ -602,22 +604,22 @@ public class MapperAnnotationBuilder {
       }
       @SuppressWarnings("unchecked")
       Class<? extends TypeHandler<?>> typeHandler = (Class<? extends TypeHandler<?>>)
-              (arg.typeHandler() == UnknownTypeHandler.class ? null : arg.typeHandler());
+        (arg.typeHandler() == UnknownTypeHandler.class ? null : arg.typeHandler());
       ResultMapping resultMapping = assistant.buildResultMapping(
-          resultType,
-          nullOrEmpty(arg.name()),
-          nullOrEmpty(arg.column()),
-          arg.javaType() == void.class ? null : arg.javaType(),
-          arg.jdbcType() == JdbcType.UNDEFINED ? null : arg.jdbcType(),
-          nullOrEmpty(arg.select()),
-          nullOrEmpty(arg.resultMap()),
-          null,
-          nullOrEmpty(arg.columnPrefix()),
-          typeHandler,
-          flags,
-          null,
-          null,
-          false);
+        resultType,
+        nullOrEmpty(arg.name()),
+        nullOrEmpty(arg.column()),
+        arg.javaType() == void.class ? null : arg.javaType(),
+        arg.jdbcType() == JdbcType.UNDEFINED ? null : arg.jdbcType(),
+        nullOrEmpty(arg.select()),
+        nullOrEmpty(arg.resultMap()),
+        null,
+        nullOrEmpty(arg.columnPrefix()),
+        typeHandler,
+        flags,
+        null,
+        null,
+        false);
       resultMappings.add(resultMapping);
     }
   }
@@ -656,8 +658,8 @@ public class MapperAnnotationBuilder {
     SqlCommandType sqlCommandType = SqlCommandType.SELECT;
 
     assistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType, fetchSize, timeout, parameterMap, parameterTypeClass, resultMap, resultTypeClass, resultSetTypeEnum,
-        flushCache, useCache, false,
-        keyGenerator, keyProperty, keyColumn, null, languageDriver, null);
+      flushCache, useCache, false,
+      keyGenerator, keyProperty, keyColumn, null, languageDriver, null);
 
     id = assistant.applyCurrentNamespace(id, false);
 

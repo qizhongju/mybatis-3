@@ -89,6 +89,7 @@ public class SqlSessionFactoryBuilder {
   }
 
   public SqlSessionFactory build(Configuration config) {
+    //构建者设计模式
     return new DefaultSqlSessionFactory(config);
   }
 
